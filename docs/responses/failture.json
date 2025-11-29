@@ -7,7 +7,7 @@
         "properties": {
           "message": {
             "type": "string",
-            "example": "Something went wrong while calculating the settlements"
+            "example": "Something went wrong while calculating the settlements."
           },
           "item": {
             "type": "object",
