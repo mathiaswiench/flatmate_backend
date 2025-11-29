@@ -1,0 +1,27 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Flatmate API",
+    "version": "1.0.0",
+    "description": "API for managing flatmate expenses and settlements"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Flatmate": {
+        "$ref": "./schemas/flatmate.json"
+      },
+      "Settlement": {
+        "$ref": "./schemas/settlement.json"
+      }
+    },
+    "responses": {
+      "Success": {
+        "$ref": "./responses/success.json"
+      },
+      "Failure": {
+        "$ref": "./responses/failture.json"
+      }
+    }
+  }
+}

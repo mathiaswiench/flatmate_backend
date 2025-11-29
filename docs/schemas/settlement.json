@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "required": ["creditor", "debitor", "amount"],
+  "properties": {
+    "creditor": {
+      "type": "string"
+    },
+    "debitor": {
+      "type": "string"
+    },
+    "amount": {
+      "type": "number"
+    }
+  }
+}

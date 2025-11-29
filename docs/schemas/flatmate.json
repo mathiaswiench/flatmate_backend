@@ -1,0 +1,16 @@
+{
+  "type": "object",
+  "required": ["name", "daysAbsent", "expenditure"],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "daysAbsent": {
+      "type": "number",
+      "example": "4"
+    },
+    "expenditure": {
+      "type": "number"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+node_modules/
+openapi.json
+*.log
+.DS_Store
+.env
+.env.local
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv

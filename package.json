@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "@apidevtools/swagger-cli": "^4.0.4"
+  },
+  "scripts": {
+    "docs:debug": "swagger-cli validate -d docs/index.json",
+    "docs:generate": "swagger-cli bundle docs/index.json --outfile openapi.json",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7"
+  }
+}
