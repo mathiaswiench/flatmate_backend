@@ -1,5 +1,5 @@
 import express from "express";
-import v1 from "./routes/index.js";
+import v1 from "./src/routes/index.js";
 import swaggerJsdoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 

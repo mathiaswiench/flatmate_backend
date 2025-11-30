@@ -10,7 +10,7 @@
     "docs:debug": "swagger-cli validate -d docs/index.json",
     "docs:generate": "swagger-cli bundle docs/index.json --outfile openapi.json",
     "prepare": "husky",
-    "dev": "node src/server.js"
+    "dev": "node server.js"
   },
   "devDependencies": {
     "husky": "^9.1.7"
