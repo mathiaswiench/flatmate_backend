@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: node-app
-          image: my-node-app:1.0 # matches your local built image
-          imagePullPolicy: Never # important for Minikube local images
+          image: my-node-app:1.0
+          imagePullPolicy: Never
           ports:
             - containerPort: 3000

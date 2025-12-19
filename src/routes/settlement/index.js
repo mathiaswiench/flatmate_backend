@@ -1,10 +1,10 @@
-import express, { Router } from "express";
-import handleSettlementCalculation from "./controller.js";
+import express, { Router } from 'express';
+import handleSettlementCalculation from './controller.js';
 
 let settlement = express.Router();
 /**
  * @openapi
- * /v1/settlement/:
+ * /settlement:
  *   post:
  *     description: Create settlements for a list of flatmates
  *     requestBody:
@@ -43,6 +43,6 @@ let settlement = express.Router();
  *       200:
  *         description: Settlements for flatmates.
  */
-settlement.post("/", handleSettlementCalculation);
+settlement.post('/', handleSettlementCalculation);
 
 export default settlement;
