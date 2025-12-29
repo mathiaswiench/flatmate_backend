@@ -10,5 +10,8 @@
     "docs:debug": "swagger-cli validate -d docs/index.json",
     "docs:generate": "swagger-cli bundle docs/index.json --outfile openapi.json",
     "dev": "node server.js"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
   }
 }

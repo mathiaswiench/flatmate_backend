@@ -6,9 +6,9 @@ export default function calculateSettlement(totalDays, flatmates) {
 
   // Gather info for each flatmate
   for (let i = 0; i < flatmates.length; i++) {
-    names.push(flatmates[i]["name"]);
-    expenditures.push(parseFloat(flatmates[i]["expenditure"]));
-    daysAbsent.push(parseInt(flatmates[i]["daysAbsent"]));
+    names.push(flatmates[i]['name']);
+    expenditures.push(parseFloat(flatmates[i]['expenditure']));
+    daysAbsent.push(parseInt(flatmates[i]['daysAbsent']));
   }
 
   // Calculate expenses
@@ -16,21 +16,21 @@ export default function calculateSettlement(totalDays, flatmates) {
     calculateExpenses(names, expenditures, daysAbsent, totalDays);
 
   console.log(
-    `\nThe total expenditure for the flat is: ${totalExpenditure.toFixed(2)}`,
+    `\nThe total expenditure for the flat is: ${totalExpenditure.toFixed(2)}`
   );
   console.log(
-    `The daily cost per person is: ${dailyCostPerPerson.toFixed(2)}\n`,
+    `The daily cost per person is: ${dailyCostPerPerson.toFixed(2)}\n`
   );
 
   for (const [name, cost] of Object.entries(individualCosts)) {
-    const status = cost > 0 ? "receives" : "owes";
+    const status = cost > 0 ? 'receives' : 'owes';
     console.log(`${name} ${status}: ${Math.abs(cost).toFixed(2)}`);
   }
 
   // who owes who
   const settlements = settleDebts(individualCosts);
 
-  console.log("\nSettlements:");
+  console.log('\nSettlements:');
   for (const settlement of settlements) {
     console.log(settlement);
   }
@@ -45,9 +45,8 @@ function calculateExpenses(names, expenditures, daysAbsent, totalDays) {
   // Calculate total present days for all flatmates
   const sumTotalPresentDays = totalPresentDays.reduce(
     (sum, days) => sum + days,
-    0,
+    0
   );
-
   // Calculate the total expenditure
   const totalExpenditure = expenditures.reduce((sum, exp) => sum + exp, 0);
 
@@ -56,7 +55,7 @@ function calculateExpenses(names, expenditures, daysAbsent, totalDays) {
 
   // Calculate individual total shares
   const individualTotalShares = totalPresentDays.map(
-    (present) => individualSharePerDay * present,
+    (present) => individualSharePerDay * present
   );
 
   // Calculate individual costs and amounts owed or to be reimbursed
@@ -91,12 +90,12 @@ function settleDebts(individualCosts) {
   while (Object.keys(debtors).length > 0 && Object.keys(creditors).length > 0) {
     // Find the debtor with the smallest debt and the creditor who is owed the most
     const debtor = Object.entries(debtors).reduce((min, curr) =>
-      curr[1] < min[1] ? curr : min,
+      curr[1] < min[1] ? curr : min
     )[0];
     const debtAmount = debtors[debtor];
 
     const creditor = Object.entries(creditors).reduce((max, curr) =>
-      curr[1] > max[1] ? curr : max,
+      curr[1] > max[1] ? curr : max
     )[0];
     const creditAmount = creditors[creditor];
 
@@ -105,7 +104,7 @@ function settleDebts(individualCosts) {
 
     // Record the transaction
     settlements.push(
-      `${debtor} owes ${creditor}: ${transactionAmount.toFixed(2)}`,
+      `${debtor} owes ${creditor}: ${transactionAmount.toFixed(2)}`
     );
 
     // Update amounts

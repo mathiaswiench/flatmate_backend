@@ -3,7 +3,8 @@ import settlement from './src/routes/settlement/index.js';
 import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 
-const port = 3000;
+const port = process.env.HOST_PORT;
+
 const swaggerSpec = swaggerJsdoc({
   definition: { openapi: '3.0.0', info: { title: 'API', version: '1.0.0' } },
   apis: ['./src/routes/**/*.js'],
@@ -12,7 +13,7 @@ const swaggerSpec = swaggerJsdoc({
 const app = express();
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`Example app listening on ${port}`);
 });
 
 app.use(express.json());
