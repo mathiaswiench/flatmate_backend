@@ -17,40 +17,25 @@ ENV NODE_ENV=development
 
 WORKDIR /usr/src/app
 
-# Download dependencies as a separate step to take advantage of Docker's caching.
-# Leverage a cache mount to /root/.npm to speed up subsequent builds.
-# Leverage a bind mounts to package.json and package-lock.json to avoid having to copy them into
-# into this layer.
-RUN --mount=type=bind,source=package.json,target=package.json \
-    --mount=type=bind,source=package-lock.json,target=package-lock.json \
-    --mount=type=cache,target=/root/.npm \
-    npm ci
 
-# Run the application as a non-root user.
-USER node
+# Copy application dependency manifests to the container image.
+# A wildcard is used to ensure copying both package.json AND package-lock.json (when available).
+# Copying this first prevents re-running npm install on every code change.
+COPY package*.json ./
 
-# Copy the rest of the source files into the image.
-COPY . .
+# Install dependencies.
+# if you need a deterministic and repeatable build create a
+# package-lock.json file and use npm ci:
+# RUN npm ci --omit=dev
+# if you need to include development dependencies during development
+# of your application, use:
+# RUN npm install --dev
 
+RUN npm install --omit=dev
 
-FROM base AS production
+# Copy local code to the container image.
+COPY . ./
 
-# Use production node environment by default.
-ENV NODE_ENV=production
-
-WORKDIR /usr/src/app
-
-# Download dependencies as a separate step to take advantage of Docker's caching.
-# Leverage a cache mount to /root/.npm to speed up subsequent builds.
-# Leverage a bind mounts to package.json and package-lock.json to avoid having to copy them into
-# into this layer.
-RUN --mount=type=bind,source=package.json,target=package.json \
-    --mount=type=bind,source=package-lock.json,target=package-lock.json \
-    --mount=type=cache,target=/root/.npm \
-    npm ci --omit=dev
-
-# Run the application as a non-root user.
-USER node
-
-# Copy the rest of the source files into the image.
-COPY . .
+# Expose the port that the app runs on
+# Run the web service on container startup.
+CMD [ "node", "server.js" ]
